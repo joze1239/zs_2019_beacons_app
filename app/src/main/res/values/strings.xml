@@ -2,4 +2,8 @@
     <string name="app_name">Zimska šola</string>
     <string name="current_location">Trenutna lokacija:</string>
     <string name="unknown_location">Neznana lokacija</string>
+
+    <string name="login_btn">PRIJAVI SE</string>
+    <string name="login_title">Prijava</string>
+    <string name="login_subtitle">Za uporabo aplikacije se moraš prijaviti.</string>
 </resources>
