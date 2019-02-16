@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package si.inova.zimskasola
+package si.inova.zimskasola.fragments
 
 import android.os.Bundle
 import android.view.*

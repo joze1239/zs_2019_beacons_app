@@ -1,9 +1,10 @@
-package si.inova.zimskasola
+package si.inova.zimskasola.activities
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.example.zimskasola.R
 import kotlinx.android.synthetic.main.activity_main2.*
+import si.inova.zimskasola.util.BeaconScanner
 
 class MainActivity2 : AppCompatActivity(), BeaconScanner.Listener {
 

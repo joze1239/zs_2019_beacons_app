@@ -13,14 +13,14 @@
             android:supportsRtl="true"
             android:theme="@style/AppTheme"
             tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name="si.inova.zimskasola.SplashScreenActivity">
+        <activity android:name="si.inova.zimskasola.activities.SplashScreenActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-        <activity android:name="si.inova.zimskasola.LoginActivity">
+        <activity android:name="si.inova.zimskasola.activities.LoginActivity">
 
         </activity>
 
@@ -31,7 +31,7 @@
                 android:name="preloaded_fonts"
                 android:resource="@array/preloaded_fonts"/>
 
-        <activity android:name="si.inova.zimskasola.MainActivity">
+        <activity android:name="si.inova.zimskasola.activities.MainActivity">
 
 
         </activity>

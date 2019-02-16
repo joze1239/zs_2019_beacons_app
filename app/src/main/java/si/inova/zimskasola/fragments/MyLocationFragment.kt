@@ -1,4 +1,4 @@
-package si.inova.zimskasola
+package si.inova.zimskasola.fragments
 
 import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle
@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.os.Handler
 import kotlinx.android.synthetic.main.my_location_fragment.*
+import si.inova.zimskasola.viewmodels.MyLocationViewModel
 
 
 class MyLocationFragment : Fragment() {

@@ -1,8 +1,7 @@
-package si.inova.zimskasola.ui.login
+package si.inova.zimskasola.fragments
 
 import android.animation.Animator
 import android.content.Intent
-import android.graphics.Color
 import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle
 import android.util.Log
@@ -14,10 +13,10 @@ import android.view.ViewGroup
 import android.view.animation.AccelerateInterpolator
 import android.widget.Toast
 import com.dx.dxloadingbutton.lib.AnimationType
-import com.dx.dxloadingbutton.lib.LoadingButton
 import com.example.zimskasola.R
 import kotlinx.android.synthetic.main.login_fragment.*
-import si.inova.zimskasola.MainActivity
+import si.inova.zimskasola.activities.MainActivity
+import si.inova.zimskasola.viewmodels.LoginViewModel
 
 class LoginFragment : Fragment(), View.OnClickListener {
 

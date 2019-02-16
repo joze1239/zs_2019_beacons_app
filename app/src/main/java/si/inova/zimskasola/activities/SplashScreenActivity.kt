@@ -1,4 +1,4 @@
-package si.inova.zimskasola
+package si.inova.zimskasola.activities
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
@@ -7,8 +7,6 @@ import android.os.Handler
 import com.bumptech.glide.Glide
 import com.example.zimskasola.R
 import kotlinx.android.synthetic.main.activity_splash_screen.*
-import android.app.ActivityOptions
-
 
 
 class SplashScreenActivity : AppCompatActivity() {

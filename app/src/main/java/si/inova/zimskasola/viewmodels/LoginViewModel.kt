@@ -1,4 +1,4 @@
-package si.inova.zimskasola.ui.login
+package si.inova.zimskasola.viewmodels
 
 import androidx.lifecycle.ViewModel
 

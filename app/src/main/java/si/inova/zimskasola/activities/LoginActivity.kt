@@ -1,9 +1,9 @@
-package si.inova.zimskasola
+package si.inova.zimskasola.activities
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.example.zimskasola.R
-import si.inova.zimskasola.ui.login.LoginFragment
+import si.inova.zimskasola.fragments.LoginFragment
 
 class LoginActivity : AppCompatActivity() {
 
