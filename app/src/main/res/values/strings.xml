@@ -2,8 +2,14 @@
     <string name="app_name">Zimska šola</string>
     <string name="current_location">Trenutna lokacija:</string>
     <string name="unknown_location">Neznana lokacija</string>
-
+    <string name="searching_location">Iščem lokacijo...</string>
     <string name="login_btn">PRIJAVI SE</string>
     <string name="login_title">Prijava</string>
     <string name="login_subtitle">Za uporabo aplikacije se moraš prijaviti.</string>
+    <string name="my_location">Moja lokacija</string>
+    <string name="all_locations">Vsi prostori</string>
+    <string name="navigate_destination_button">btn_dest1</string>
+    <string name="navigate_action_button">btn_dest2</string>
+    <string name="home">btn_dest0</string>
+    <string name="settings">Možnosti</string>
 </resources>

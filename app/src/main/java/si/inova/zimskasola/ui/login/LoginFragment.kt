@@ -127,6 +127,7 @@ class LoginFragment : Fragment(), View.OnClickListener {
 
             override fun onAnimationEnd(animation: Animator) {
                 startActivity(Intent(activity, MainActivity::class.java))
+                activity?.overridePendingTransition(R.anim.fadein, R.anim.fadeout)
                 btn_login.reset()
                 activity?.finish()
                 // animate_view.visibility = View.INVISIBLE

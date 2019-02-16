@@ -32,6 +32,8 @@
                 android:resource="@array/preloaded_fonts"/>
 
         <activity android:name="si.inova.zimskasola.MainActivity">
+
+
         </activity>
     </application>
 

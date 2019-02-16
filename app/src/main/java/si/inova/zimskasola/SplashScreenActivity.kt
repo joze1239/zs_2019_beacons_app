@@ -7,6 +7,9 @@ import android.os.Handler
 import com.bumptech.glide.Glide
 import com.example.zimskasola.R
 import kotlinx.android.synthetic.main.activity_splash_screen.*
+import android.app.ActivityOptions
+
+
 
 class SplashScreenActivity : AppCompatActivity() {
 
@@ -30,13 +33,14 @@ class SplashScreenActivity : AppCompatActivity() {
             {
                 val intent = Intent(this, LoginActivity::class.java)
                 startActivity(intent)
+                overridePendingTransition(R.anim.fadein, R.anim.fadeout)
                 finish()
             },
             splashScreenDuration
         )
     }
 
-    private fun getSplashScreenDuration() = 2000L
+    private fun getSplashScreenDuration() = 2500L
 
 
 }

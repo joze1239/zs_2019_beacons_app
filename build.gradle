@@ -27,3 +27,8 @@ allprojects {
 task clean(type: Delete) {
     delete rootProject.buildDir
 }
+
+ext {
+    navigationVersion = "1.0.0-beta02"
+    lottieVersion = "3.0.0-beta1"
+}

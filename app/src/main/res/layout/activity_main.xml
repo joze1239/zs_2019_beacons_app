@@ -1,31 +1,116 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                                                   xmlns:app="http://schemas.android.com/apk/res-auto"
-                                                   xmlns:tools="http://schemas.android.com/tools"
-                                                   android:layout_width="match_parent"
-                                                   android:layout_height="match_parent"
-                                                   tools:context="si.inova.zimskasola.MainActivity">
+<LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        tools:context="si.inova.zimskasola.MainActivity">
 
-    <TextView
-        android:id="@+id/tvCurrentLocation"
-        style="@style/CurrentLocation"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
-        android:text="@string/current_location"
-        app:layout_constraintBottom_toTopOf="@+id/tvBeaconAttachment"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"/>
+    <!--<androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
 
-    <TextView
-        android:id="@+id/tvBeaconAttachment"
-        style="@style/BeaconAttachment"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/unknown_location"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+            android:background="@color/colorPrimary"
+            android:theme="@style/ThemeOverlay.AppCompat.Dark" android:paddingTop="8dp"
+    >
+
+        <TextView
+                android:id="@+id/pageTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:textColor="@color/white"/>
+    </androidx.appcompat.widget.Toolbar>-->
+
+
+    <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/toolbar_height"
+            android:background="@color/black"
+    >
+        <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:orientation="vertical">
+            <TextView
+                    android:id="@+id/toolbar_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:text="INOVA IT"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/toolbar_title"
+                    android:textStyle="bold" android:fontFamily="@font/montserrat_bold"
+                    android:layout_marginTop="8dp"/>
+            <TextView
+                    android:id="@+id/toolbar_title2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:text="Jadranska 23, Maribor"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/toolbar_subtitle"
+                    android:fontFamily="@font/montserrat"/>
+
+        </LinearLayout>
+    </androidx.appcompat.widget.Toolbar>
+
+
+    <!--  <androidx.appcompat.widget.Toolbar
+              android:id="@+id/product_details_toolbar"
+
+              android:layout_width="match_parent"
+              android:layout_height="@dimen/double_height_toolbar"
+              android:minHeight="?attr/actionBarSize"
+              android:gravity="top"
+              app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+              app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar" >
+
+          <TextView
+                  android:id="@+id/product_details_title"
+                  android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:gravity="top"
+                  android:paddingTop="@dimen/padding_normal"
+                  style="@android:style/TextAppearance.Holo.Widget.ActionBar.Title.Inverse"
+                  android:maxLines="2" />
+
+      </androidx.appcompat.widget.Toolbar>-->
+
+    <fragment
+            android:id="@+id/my_nav_host_fragment"
+            android:name="androidx.navigation.fragment.NavHostFragment"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            app:defaultNavHost="true"
+            app:navGraph="@navigation/nav_graph"/>
+
+
+    <View
+            android:layout_width="match_parent"
+            android:layout_height="4dp"
+            android:background="@drawable/shadow"
+
+            android:layout_above="@+id/bottom_navigation"
+    />
+
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+            android:id="@+id/bottom_nav_view"
+            android:layout_width="match_parent"
+
+            app:itemBackground="@color/white"
+            app:itemIconTint="@drawable/bnv_tab_item_foreground"
+            app:itemTextColor="@drawable/bnv_tab_item_foreground"
+
+
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            app:menu="@menu/bottom_nav_menu"/>
+</LinearLayout>

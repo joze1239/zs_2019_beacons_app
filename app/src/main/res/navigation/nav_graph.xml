@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/nav_graph" app:startDestination="@id/my_location_dest">
+    <fragment android:id="@+id/my_location_dest" android:name="si.inova.zimskasola.MyLocationFragment"
+              android:label="MyLocationFragment"/>
+    <fragment android:id="@+id/location_list_dest" android:name="si.inova.zimskasola.AllLocationsFragment"
+              android:label="AllLocationsFragment"/>
+    <fragment android:id="@+id/settings_dest" android:name="si.inova.zimskasola.SettingsFragment"
+              android:label="SettingsFragment"/>
+</navigation>
