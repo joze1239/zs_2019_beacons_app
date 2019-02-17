@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.example.zimskasola.R
+import si.inova.zimskasola.activities.MainActivity
 import si.inova.zimskasola.viewmodels.AllLocationsViewModel
 
 
@@ -29,6 +30,8 @@ class AllLocationsFragment : Fragment() {
         super.onActivityCreated(savedInstanceState)
         viewModel = ViewModelProviders.of(this).get(AllLocationsViewModel::class.java)
         // TODO: Use the ViewModel
+
+        (activity as MainActivity).hideLogout()
     }
 
 }

@@ -12,4 +12,7 @@
     <string name="navigate_action_button">btn_dest2</string>
     <string name="home">btn_dest0</string>
     <string name="settings">Možnosti</string>
+    <string name="logout">Odjava</string>
+    <string name="client_id">329347550650-j5fl321svlcfkhleu2sor4rkcbeu1k82.apps.googleusercontent.com</string>
+
 </resources>

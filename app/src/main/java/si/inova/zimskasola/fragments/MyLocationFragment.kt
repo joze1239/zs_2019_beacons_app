@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.os.Handler
 import kotlinx.android.synthetic.main.my_location_fragment.*
+import si.inova.zimskasola.activities.MainActivity
 import si.inova.zimskasola.viewmodels.MyLocationViewModel
 
 
@@ -30,6 +31,8 @@ class MyLocationFragment : Fragment() {
         super.onActivityCreated(savedInstanceState)
         viewModel = ViewModelProviders.of(this).get(MyLocationViewModel::class.java)
         // TODO: Use the ViewModel
+
+        (activity as MainActivity).hideLogout()
 
         val handler = Handler()
         handler.postDelayed( {

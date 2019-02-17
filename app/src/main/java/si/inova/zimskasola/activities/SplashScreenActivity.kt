@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.os.Handler
 import com.bumptech.glide.Glide
 import com.example.zimskasola.R
+import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.activity_splash_screen.*
 
 
@@ -29,10 +30,13 @@ class SplashScreenActivity : AppCompatActivity() {
         val splashScreenDuration = getSplashScreenDuration()
         Handler().postDelayed(
             {
-                val intent = Intent(this, LoginActivity::class.java)
-                startActivity(intent)
-                overridePendingTransition(R.anim.fadein, R.anim.fadeout)
-                finish()
+                // Check if user is signed in (non-null) and update UI accordingly.
+                val user = FirebaseAuth.getInstance().currentUser
+                if (user != null) {
+                    starMainAc()
+                } else {
+                    startLoginAc()
+                }
             },
             splashScreenDuration
         )
@@ -40,5 +44,19 @@ class SplashScreenActivity : AppCompatActivity() {
 
     private fun getSplashScreenDuration() = 2500L
 
+
+    private fun startLoginAc() {
+        val intent = Intent(this, LoginActivity::class.java)
+        startActivity(intent)
+        overridePendingTransition(R.anim.fadein, R.anim.fadeout)
+        finish()
+    }
+
+    private fun starMainAc() {
+        val intent = Intent(this, MainActivity::class.java)
+        startActivity(intent)
+        overridePendingTransition(R.anim.fadein, R.anim.fadeout)
+        finish()
+    }
 
 }
