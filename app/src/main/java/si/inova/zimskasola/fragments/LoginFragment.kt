@@ -79,6 +79,7 @@ class LoginFragment : Fragment(), View.OnClickListener {
     }
 
     private fun init() {
+        error_msg.visibility = View.INVISIBLE
         btn_g_logo.visibility = View.VISIBLE
         btn_login.resetAfterFailed = true
         btn_login.animationEndAction = fun(animationType: AnimationType): Unit {
@@ -109,6 +110,7 @@ class LoginFragment : Fragment(), View.OnClickListener {
 
     private fun checkLogin() {
         btn_g_logo.visibility = View.INVISIBLE
+        error_msg.visibility = View.INVISIBLE
         btn_login.startLoading()
         signIn()
     }
@@ -120,10 +122,17 @@ class LoginFragment : Fragment(), View.OnClickListener {
                 //login success
                 btn_login.loadingSuccessful()
                 btn_login.animationEndAction = fun(animationType: AnimationType): Unit {
-                    toNextPage()
+
+                    Handler().postDelayed(
+                        {
+                            toNextPage()
+                        },
+                        400
+                    )
                 }
             } else {
                 btn_login.loadingFailed()
+
                 showGoogleLogo()
 
             }
@@ -135,6 +144,7 @@ class LoginFragment : Fragment(), View.OnClickListener {
         Handler().postDelayed(
             {
                 btn_g_logo.visibility = View.VISIBLE
+                error_msg.visibility = View.VISIBLE
             },
             2000
         )

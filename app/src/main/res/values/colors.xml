@@ -3,6 +3,8 @@
     <color name="colorPrimary">#ff000000</color>
     <color name="colorPrimaryDark">#ff000000</color>
     <color name="colorAccent">#FF4081</color>
+
+    <!--    <color name="colorAccent">#FF4081</color> -->
     <color name="text_color">#444</color>
     <color name="window_background">#fff</color>
 
