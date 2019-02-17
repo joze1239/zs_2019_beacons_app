@@ -1,5 +1,6 @@
 package si.inova.zimskasola.viewmodels
 
+import android.net.Uri
 import android.util.Log
 import androidx.annotation.Nullable
 import androidx.lifecycle.LiveData
@@ -14,20 +15,23 @@ import com.google.firebase.firestore.QuerySnapshot
 import com.google.android.gms.tasks.Task
 import androidx.annotation.NonNull
 import com.google.android.gms.tasks.OnCompleteListener
+import com.google.firebase.auth.FirebaseAuth
 
 
-class LocationViewModel : ViewModel() {
+class MainViewModel : ViewModel() {
 
-    private val TAG = "LocationViewModel"
+    private val TAG = "MainViewModel"
     private val db = FirebaseFirestore.getInstance()
+    private var auth: FirebaseAuth = FirebaseAuth.getInstance()
 
 
     private lateinit var locations: MutableLiveData<List<Location>>
 
 
-    fun init() {
+    fun getUserEmail(): String? = auth.currentUser!!.email
+    fun getUserName(): String? = auth.currentUser!!.displayName
+    fun getUserPhotoUrl(): Uri? = auth.currentUser!!.photoUrl
 
-    }
 
     fun getLocations(): LiveData<List<Location>> {
         locations = MutableLiveData()

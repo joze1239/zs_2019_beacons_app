@@ -37,7 +37,7 @@ class LoginFragment : Fragment(), View.OnClickListener {
 
     companion object {
         fun newInstance() = LoginFragment()
-        private const val TAG = "GoogleActivity"
+        private const val TAG = "LoginFragment"
         private const val RC_SIGN_IN = 9001
     }
 

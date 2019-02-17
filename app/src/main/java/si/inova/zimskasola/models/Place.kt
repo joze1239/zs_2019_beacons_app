@@ -4,6 +4,7 @@ import com.google.firebase.database.IgnoreExtraProperties
 
 @IgnoreExtraProperties
 data class Place(
-    var address: String? = "",
+    var floor: String? = "",
+    var image: String? = "",
     var name: String? = ""
 )
