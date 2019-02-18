@@ -6,4 +6,5 @@
     <dimen name="toolbar_title">15sp</dimen>
     <dimen name="toolbar_subtitle">13sp</dimen>
     <dimen name="toolbar_logout">15sp</dimen>
+    <dimen name="hr_line">1dp</dimen>
 </resources>

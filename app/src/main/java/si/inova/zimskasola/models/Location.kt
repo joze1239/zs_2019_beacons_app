@@ -1,9 +1,10 @@
 package si.inova.zimskasola.models
 
-import com.google.firebase.database.IgnoreExtraProperties
+import com.google.gson.annotations.SerializedName
 
-@IgnoreExtraProperties
-data class Location(
-    var address: String? = "",
-    var name: String? = ""
+data class Location (
+
+    @SerializedName("title") val title : String,
+    @SerializedName("description") val description : String,
+    @SerializedName("floors") val floors : List<Floor>
 )

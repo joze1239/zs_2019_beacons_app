@@ -2,6 +2,7 @@ package si.inova.zimskasola.fragments
 
 import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle
+import android.util.Log
 import android.view.*
 import androidx.fragment.app.Fragment
 import com.bumptech.glide.Glide
@@ -43,11 +44,19 @@ class SettingsFragment : Fragment() {
     }
 
     private fun updateUI() {
-        tv_email.text = viewModel.getUserEmail() + "\n" + viewModel.getUserName() + "\nPath = " + viewModel.getUserPhotoUrl()?.getPath()
+        // Show user email and name
+        tv_email.text =
+            viewModel.getUserEmail() + "\n" + viewModel.getUserName() + "\nPath = " + viewModel.getUserPhotoUrl()?.getPath()
 
-        /*Glide.with(context!!)
-            .load(File(viewModel.getUserPhotoUrl()?.getPath()))
-            .into(iv_userPhoto)*/
+        // Show user profile image
+        var imgUrl = "https://lh3.googleusercontent.com" + viewModel.getUserPhotoUrl()?.path
+        imgUrl = imgUrl.replace("s96-c", "s400-c")
+        Glide.with(context!!)
+            .load(imgUrl)
+            .circleCrop()
+            .into(iv_userPhoto)
+
+
     }
 
 

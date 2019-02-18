@@ -31,4 +31,5 @@ task clean(type: Delete) {
 ext {
     navigationVersion = "1.0.0-beta02"
     lottieVersion = "3.0.0-beta1"
+    recyclerViewVersion = '1.0.0'
 }
