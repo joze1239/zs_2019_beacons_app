@@ -19,6 +19,7 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
 import com.google.gson.Gson
+import si.inova.zimskasola.models.Room
 import java.io.File
 
 
@@ -30,6 +31,7 @@ class MainViewModel : ViewModel() {
 
 
     private lateinit var location: MutableLiveData<Location>
+    private lateinit var currentRoom: MutableLiveData<Room>
 
     private val mStorageRef: StorageReference = FirebaseStorage.getInstance().reference
 
@@ -38,15 +40,12 @@ class MainViewModel : ViewModel() {
     fun getUserName(): String? = auth.currentUser!!.displayName
     fun getUserPhotoUrl(): Uri? = auth.currentUser!!.photoUrl
 
-    fun getLocationData(): LiveData<Location> {
-        Log.d(TAG, "getLocationData()")
-        return location
-    }
+    fun getLocationData(): LiveData<Location> = location
+    fun getCurrentRoom(): LiveData<Room> = currentRoom
 
     fun init() {
-        Log.d(TAG, "init()")
+        // Get location data from firebase
         location = MutableLiveData()
-
         val fileRef = mStorageRef.child("25022c4a-3035-11e9-bb6a-a5c92278bce1.json")
         val localFile = File.createTempFile("data", "json")
 
@@ -58,9 +57,34 @@ class MainViewModel : ViewModel() {
             // Handle any errors
             Log.d(TAG, "error: fileRef.getFile")
         }
+
+        // init current room
+        currentRoom = MutableLiveData()
     }
 
+    fun updateCurrentRoom(beaconId: String) {
+        val floors = location.value?.floors
+        if (floors != null) {
+            for (floor in floors) {
+                var room = floor.rooms.filter { it.beacon_id.equals(beaconId) }
+                Log.d(TAG, "updateCurrentRoom ${room.toString()}")
+                if (room.isNotEmpty())  {
+                    var newRoom = room[0]
+                    newRoom.floor = floor.name
+                    currentRoom.value = newRoom
+                    return
+                }
 
+            }
+        }
+
+        Log.d(TAG, "updateCurrentRoom(): no room found!")
+        currentRoom.value = null
+    }
+
+    fun updateCurrentRoomLeaved() {
+        currentRoom.value = null
+    }
 
 
 }

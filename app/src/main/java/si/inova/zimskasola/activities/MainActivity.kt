@@ -1,10 +1,13 @@
 package si.inova.zimskasola.activities
 
+import android.Manifest
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
+import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
@@ -15,16 +18,26 @@ import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.firebase.auth.FirebaseAuth
+import com.master.permissionhelper.PermissionHelper
 import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.android.synthetic.main.login_fragment.*
-import si.inova.zimskasola.viewmodels.LoginViewModel
+import si.inova.zimskasola.util.BeaconScanner
 import si.inova.zimskasola.viewmodels.MainViewModel
+import androidx.annotation.NonNull
 
-class MainActivity : AppCompatActivity() {
+
+
+class MainActivity : AppCompatActivity(), BeaconScanner.Listener {
 
     private lateinit var auth: FirebaseAuth
     private lateinit var googleSignInClient: GoogleSignInClient
     private lateinit var viewModel: MainViewModel
+    private var scanner = BeaconScanner(this, this)
+    private lateinit var permissionHelper: PermissionHelper
+
+    companion object {
+        private const val TAG = "MainActivity"
+    }
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -34,8 +47,68 @@ class MainActivity : AppCompatActivity() {
         viewModel.init()
 
         initUI()
+        checkPermissions()
     }
 
+
+    fun checkPermissions() {
+        permissionHelper = PermissionHelper(
+            this,
+            arrayOf(
+                Manifest.permission.BLUETOOTH_ADMIN,
+                Manifest.permission.BLUETOOTH,
+                Manifest.permission.ACCESS_FINE_LOCATION,
+                Manifest.permission.ACCESS_COARSE_LOCATION
+            ),
+            100
+        )
+        permissionHelper?.denied {
+            if (it) {
+                Log.d(TAG, "Permission denied by system")
+                permissionHelper?.openAppDetailsActivity()
+            } else {
+                Log.d(TAG, "Permission denied")
+            }
+        }
+
+        //Request all permission
+        permissionHelper?.requestAll {
+            Log.d(TAG, "All permission granted")
+        }
+
+        //Request individual permission
+        permissionHelper?.requestIndividual {
+            Log.d(TAG, "Individual Permission Granted")
+        }
+    }
+
+    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<String>, grantResults: IntArray) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+        if (permissionHelper != null) {
+            permissionHelper.onRequestPermissionsResult(requestCode, permissions, grantResults)
+        }
+    }
+
+
+    override fun onStart() {
+        Log.d(TAG, "onStart")
+        super.onStart()
+        scanner.start()
+    }
+
+    override fun onStop() {
+        Log.d(TAG, "onStop")
+        super.onStop()
+        scanner.stop()
+    }
+
+    override fun onBeaconFound(data: String) {
+        viewModel.updateCurrentRoom(data)
+    }
+
+    override fun onBeaconLost(data: String) {
+        viewModel.updateCurrentRoomLeaved()
+    }
 
 
     private fun initUI() {
@@ -88,7 +161,6 @@ class MainActivity : AppCompatActivity() {
     fun hideLogout() {
         toolbar_logout.visibility = View.INVISIBLE
     }
-
 
 
     private fun setupBottomNavMenu(navController: NavController) {

@@ -7,5 +7,6 @@ data class Room(
     @SerializedName("beacon_id") val beacon_id: String,
     @SerializedName("name") val name: String,
     @SerializedName("image") val image: String,
-    @SerializedName("stuff") val stuff: List<Stuff>
+    @SerializedName("stuff") val stuff: List<Stuff>,
+    var floor: String?
 )
