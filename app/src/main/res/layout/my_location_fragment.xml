@@ -33,7 +33,7 @@
                                                 android:orientation="horizontal"
                                                 app:layout_constraintGuide_percent="0.6"/>-->
     <include android:layout_width="0dp" android:layout_height="0dp"
-             layout="@layout/layout_location_details" app:layout_constraintEnd_toEndOf="parent"
+             layout="@layout/layout_room_details" app:layout_constraintEnd_toEndOf="parent"
              app:layout_constraintTop_toTopOf="parent"
              app:layout_constraintStart_toStartOf="parent"
              app:layout_constraintBottom_toBottomOf="parent" android:id="@+id/l_details"/>

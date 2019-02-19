@@ -17,4 +17,9 @@
     <string name="login_error_msg">Prijava ni uspela, poskusi ponovno.</string>
     <string name="rooms">Prostori</string>
 
+
+    <string name="permission_message">permission_message</string>
+    <string name="you_are_locating_at">NAHAJAŠ SE V</string>
+
+
 </resources>

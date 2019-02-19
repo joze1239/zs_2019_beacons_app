@@ -14,6 +14,8 @@ import si.inova.zimskasola.activities.MainActivity
 import si.inova.zimskasola.viewmodels.MainViewModel
 import androidx.lifecycle.Observer
 import com.google.firebase.database.DatabaseReference
+import kotlinx.android.synthetic.main.layout_room_details.view.*
+import si.inova.zimskasola.models.Room
 
 
 class MyLocationFragment : Fragment() {
@@ -46,7 +48,6 @@ class MyLocationFragment : Fragment() {
         init()
 
 
-
     }
 
     private fun init() {
@@ -56,23 +57,39 @@ class MyLocationFragment : Fragment() {
             }
         })
 
+        viewModel.getCurrentRoom().observe(this, Observer { room ->
+            run {
+                updateUI(room)
+            }
+        })
+
 
     }
 
     private fun initUI() {
         (activity as MainActivity).hideLogout()
-
-        val handler = Handler()
-        handler.postDelayed({
-            showLocationDetails()
-        }, 2500)
+        showSearching()
     }
 
-    private fun showLocationDetails() {
+    private fun updateUI(room: Room?) {
+        if (room != null)
+            showRoomDetails(room)
+        else
+            showSearching()
+    }
+
+    private fun showRoomDetails(room: Room) {
+        l_details.tv_room_name.text = room.name
+        l_details.tv_floor_name.text = room.floor
+
+
         l_details?.visibility = View.VISIBLE
         l_searching?.visibility = View.INVISIBLE
+    }
 
-
+    private fun showSearching() {
+        l_details?.visibility = View.INVISIBLE
+        l_searching?.visibility = View.VISIBLE
     }
 
 

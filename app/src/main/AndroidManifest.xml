@@ -4,6 +4,11 @@
           package="com.example.zimskasola">
 
     <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.BLUETOOTH" />
+    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+
 
     <application
             android:allowBackup="true"
@@ -26,7 +31,7 @@
 
         <meta-data
                 android:name="com.google.android.nearby.messages.API_KEY"
-                android:value="AIzaSyA2G1NIRXDvoXi6_S8a7UL0f120p1nVtdc"/>
+                android:value="AIzaSyAbUC5LkcoTcpq9dv7IDdPVmxJmWIko8jw"/>
         <meta-data
                 android:name="preloaded_fonts"
                 android:resource="@array/preloaded_fonts"/>
