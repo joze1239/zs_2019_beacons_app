@@ -8,4 +8,6 @@
               android:label="AllLocationsFragment"/>
     <fragment android:id="@+id/settings_dest" android:name="si.inova.zimskasola.fragments.SettingsFragment"
               android:label="SettingsFragment"/>
+    <fragment android:id="@+id/no_connection_dest" android:name="si.inova.zimskasola.fragments.NoConnectionFragment"
+              android:label="NoConnectionFragment"/>
 </navigation>

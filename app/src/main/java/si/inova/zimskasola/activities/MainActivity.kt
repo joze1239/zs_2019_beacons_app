@@ -1,13 +1,14 @@
 package si.inova.zimskasola.activities
 
 import android.Manifest
+import android.app.ActivityManager
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
-import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
@@ -22,8 +23,10 @@ import com.master.permissionhelper.PermissionHelper
 import kotlinx.android.synthetic.main.activity_main.*
 import si.inova.zimskasola.util.BeaconScanner
 import si.inova.zimskasola.viewmodels.MainViewModel
-import androidx.annotation.NonNull
-
+import android.net.Uri
+import androidx.navigation.Navigation
+import si.inova.zimskasola.Services.BeaconBackgroundService
+import si.inova.zimskasola.util.InternetCheck
 
 
 class MainActivity : AppCompatActivity(), BeaconScanner.Listener {
@@ -33,6 +36,10 @@ class MainActivity : AppCompatActivity(), BeaconScanner.Listener {
     private lateinit var viewModel: MainViewModel
     private var scanner = BeaconScanner(this, this)
     private lateinit var permissionHelper: PermissionHelper
+
+    private lateinit var serviceClass: Class<BeaconBackgroundService>
+    private lateinit var intentService: Intent
+
 
     companion object {
         private const val TAG = "MainActivity"
@@ -46,8 +53,25 @@ class MainActivity : AppCompatActivity(), BeaconScanner.Listener {
         viewModel = ViewModelProviders.of(this).get(MainViewModel::class.java)
         viewModel.init()
 
+        init()
         initUI()
         checkPermissions()
+    }
+
+
+    private fun init() {
+        // Variable to hold service class name
+        serviceClass = BeaconBackgroundService::class.java
+        // Initialize a new Intent instance
+        intentService = Intent(applicationContext, serviceClass)
+
+        startBeaconService()
+
+        InternetCheck { internet ->
+            Log.d("Connection", "Is connection enabled? " + internet)
+            showNoConnectionError()
+        }
+
     }
 
 
@@ -133,15 +157,40 @@ class MainActivity : AppCompatActivity(), BeaconScanner.Listener {
             .build()
         googleSignInClient = GoogleSignIn.getClient(this, gso)
 
-
         // Init onSignOut
         toolbar_logout.setOnClickListener {
             signOut()
+        }
 
+        // on toolbar address click -> open maps
+        toolbar_subtitle.setOnClickListener {
+            openMaps()
+        }
+
+    }
+
+    private fun showNoConnectionError() {
+        Navigation.createNavigateOnClickListener(R.id.no_connection_dest, null)
+    }
+
+    private fun openMaps() {
+        var lat = 46.6011867
+        var lon = 15.6745545
+        var label = "INOVA IT"
+
+        val gmmIntentUri =
+            Uri.parse("geo:<$lat>,<$lon>?q=<$lat>,<$lon>($label)")
+        val mapIntent = Intent(Intent.ACTION_VIEW, gmmIntentUri)
+        mapIntent.setPackage("com.google.android.apps.maps")
+        if (mapIntent.resolveActivity(packageManager) != null) {
+            startActivity(mapIntent)
         }
     }
 
     private fun signOut() {
+        // Stop beacon background service
+        stopBeaconService()
+
         // Firebase sign out
         auth.signOut()
 
@@ -166,6 +215,41 @@ class MainActivity : AppCompatActivity(), BeaconScanner.Listener {
     private fun setupBottomNavMenu(navController: NavController) {
         val bottomNav = findViewById<BottomNavigationView>(R.id.bottom_nav_view)
         bottomNav?.setupWithNavController(navController)
+    }
+
+    private fun startBeaconService() {
+        // If the service is not running then start it
+        if (!isServiceRunning(serviceClass)) {
+            // Start the service
+            startService(intent)
+            Log.d(TAG, "startBeaconService(): Service started")
+        } else {
+            Log.d(TAG, "startBeaconService(): Service already runing")
+        }
+
+
+    }
+
+    private fun stopBeaconService() {
+        if (isServiceRunning(serviceClass)) {
+            // Stop the service
+            stopService(intent)
+        }
+    }
+
+    // Custom method to determine whether a service is running
+    private fun isServiceRunning(serviceClass: Class<*>): Boolean {
+        val activityManager = getSystemService(Context.ACTIVITY_SERVICE) as ActivityManager
+
+        // Loop through the running services
+        @Suppress("DEPRECATION")
+        for (service in activityManager.getRunningServices(Integer.MAX_VALUE)) {
+            if (serviceClass.name == service.service.className) {
+                // If the service is running then return true
+                return true
+            }
+        }
+        return false
     }
 
 
