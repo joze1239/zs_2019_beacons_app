@@ -7,12 +7,14 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.Observer
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.zimskasola.R
 import kotlinx.android.synthetic.main.all_locations_fragment.*
 import si.inova.zimskasola.activities.MainActivity
 import si.inova.zimskasola.adapters.FloorAdapter
+import si.inova.zimskasola.util.InternetCheck
 import si.inova.zimskasola.viewmodels.MainViewModel
 
 
@@ -47,9 +49,9 @@ class AllLocationsFragment : Fragment() {
         } ?: throw Exception("Invalid Activity")
 
 
-
-        initUI()
         init()
+        initUI()
+
 
     }
 
@@ -58,6 +60,13 @@ class AllLocationsFragment : Fragment() {
     }
 
     private fun init() {
+        // Check internet connectiom
+        InternetCheck { internet ->
+            if (!internet) {
+                findNavController().navigate(R.id.action_no_connection)
+            }
+        }
+
         viewModel.getLocationData().observe(this, Observer { location ->
             run {
                 viewManager = LinearLayoutManager(context)
@@ -73,8 +82,6 @@ class AllLocationsFragment : Fragment() {
 
 
     }
-
-
 
 
 }

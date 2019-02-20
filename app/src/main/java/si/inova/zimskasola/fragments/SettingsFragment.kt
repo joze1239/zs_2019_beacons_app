@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.*
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
@@ -12,6 +13,7 @@ import com.example.zimskasola.R
 import kotlinx.android.synthetic.main.settings_fragment.*
 import si.inova.zimskasola.activities.MainActivity
 import si.inova.zimskasola.adapters.FloorAdapter
+import si.inova.zimskasola.util.InternetCheck
 import si.inova.zimskasola.viewmodels.MainViewModel
 
 
@@ -40,10 +42,20 @@ class SettingsFragment : Fragment() {
             ViewModelProviders.of(this).get(MainViewModel::class.java)
         } ?: throw Exception("Invalid Activity")
 
+        init()
         initUI()
         updateUI()
 
 
+    }
+
+    private fun init() {
+        // Check internet connectiom
+        InternetCheck { internet ->
+            if(!internet) {
+                findNavController().navigate(R.id.action_no_connection)
+            }
+        }
     }
 
     private fun initUI() {

@@ -24,10 +24,8 @@ import kotlinx.android.synthetic.main.activity_main.*
 import si.inova.zimskasola.util.BeaconScanner
 import si.inova.zimskasola.viewmodels.MainViewModel
 import android.net.Uri
-import androidx.navigation.Navigation
 import si.inova.zimskasola.Services.BeaconBackgroundService
 import si.inova.zimskasola.util.InternetCheck
-
 
 class MainActivity : AppCompatActivity(), BeaconScanner.Listener {
 
@@ -39,6 +37,9 @@ class MainActivity : AppCompatActivity(), BeaconScanner.Listener {
 
     private lateinit var serviceClass: Class<BeaconBackgroundService>
     private lateinit var intentService: Intent
+
+    private lateinit var bottomNav: BottomNavigationView
+    private lateinit var navController: NavController
 
 
     companion object {
@@ -67,10 +68,7 @@ class MainActivity : AppCompatActivity(), BeaconScanner.Listener {
 
         startBeaconService()
 
-        InternetCheck { internet ->
-            Log.d("Connection", "Is connection enabled? " + internet)
-            showNoConnectionError()
-        }
+
 
     }
 
@@ -143,7 +141,7 @@ class MainActivity : AppCompatActivity(), BeaconScanner.Listener {
             .findFragmentById(R.id.my_nav_host_fragment) as NavHostFragment? ?: return
 
         // Set up Action Bar
-        val navController = host.navController
+        navController = host.navController
         setupBottomNavMenu(navController)
 
 
@@ -169,9 +167,10 @@ class MainActivity : AppCompatActivity(), BeaconScanner.Listener {
 
     }
 
-    private fun showNoConnectionError() {
-        Navigation.createNavigateOnClickListener(R.id.no_connection_dest, null)
-    }
+
+
+
+
 
     private fun openMaps() {
         var lat = 46.6011867
@@ -213,8 +212,10 @@ class MainActivity : AppCompatActivity(), BeaconScanner.Listener {
 
 
     private fun setupBottomNavMenu(navController: NavController) {
-        val bottomNav = findViewById<BottomNavigationView>(R.id.bottom_nav_view)
+        bottomNav = findViewById<BottomNavigationView>(R.id.bottom_nav_view)
         bottomNav?.setupWithNavController(navController)
+
+
     }
 
     private fun startBeaconService() {

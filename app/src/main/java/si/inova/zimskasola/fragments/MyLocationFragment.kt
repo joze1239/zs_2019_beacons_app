@@ -13,6 +13,9 @@ import kotlinx.android.synthetic.main.my_location_fragment.*
 import si.inova.zimskasola.activities.MainActivity
 import si.inova.zimskasola.viewmodels.MainViewModel
 import androidx.lifecycle.Observer
+import androidx.navigation.Navigation
+import androidx.navigation.Navigation.findNavController
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
@@ -20,10 +23,12 @@ import com.bumptech.glide.load.DataSource
 import com.bumptech.glide.load.engine.GlideException
 import com.bumptech.glide.request.RequestListener
 import com.bumptech.glide.request.target.Target
+import com.example.zimskasola.R
 import com.google.firebase.database.DatabaseReference
 import kotlinx.android.synthetic.main.layout_room_details.view.*
 import si.inova.zimskasola.adapters.StuffAdapter
 import si.inova.zimskasola.models.Room
+import si.inova.zimskasola.util.InternetCheck
 
 
 class MyLocationFragment : Fragment() {
@@ -63,6 +68,13 @@ class MyLocationFragment : Fragment() {
     }
 
     private fun init() {
+        // Check internet connectiom
+        InternetCheck { internet ->
+            if(!internet) {
+                findNavController().navigate(R.id.action_no_connection)
+            }
+        }
+
         viewModel.getLocationData().observe(this, Observer { location ->
             run {
                 Log.d(TAG, location.toString())

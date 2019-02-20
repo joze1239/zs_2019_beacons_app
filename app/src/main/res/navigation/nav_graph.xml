@@ -3,11 +3,19 @@
             xmlns:app="http://schemas.android.com/apk/res-auto"
             android:id="@+id/nav_graph" app:startDestination="@id/my_location_dest">
     <fragment android:id="@+id/my_location_dest" android:name="si.inova.zimskasola.fragments.MyLocationFragment"
-              android:label="MyLocationFragment"/>
+              android:label="MyLocationFragment">
+        <action android:id="@+id/action_no_connection"
+                app:destination="@id/no_connection_dest"/>
+    </fragment>
     <fragment android:id="@+id/location_list_dest" android:name="si.inova.zimskasola.fragments.AllLocationsFragment"
-              android:label="AllLocationsFragment"/>
+              android:label="AllLocationsFragment">
+        <action android:id="@+id/action_no_connection"
+                app:destination="@id/no_connection_dest"/>
+    </fragment>
     <fragment android:id="@+id/settings_dest" android:name="si.inova.zimskasola.fragments.SettingsFragment"
-              android:label="SettingsFragment"/>
+              android:label="SettingsFragment">
+        <action android:id="@+id/action_no_connection" app:destination="@id/no_connection_dest"/>
+    </fragment>
     <fragment android:id="@+id/no_connection_dest" android:name="si.inova.zimskasola.fragments.NoConnectionFragment"
               android:label="NoConnectionFragment"/>
 </navigation>
