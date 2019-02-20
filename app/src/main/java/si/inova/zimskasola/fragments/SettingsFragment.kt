@@ -61,6 +61,7 @@ class SettingsFragment : Fragment() {
 
     private fun initUI() {
         (activity as MainActivity).showLogout()
+        (activity as MainActivity).hideToolbarActionBack()
     }
 
 

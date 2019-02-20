@@ -24,6 +24,7 @@ import kotlinx.android.synthetic.main.activity_main.*
 import si.inova.zimskasola.util.BeaconScanner
 import si.inova.zimskasola.viewmodels.MainViewModel
 import android.net.Uri
+import androidx.navigation.ui.NavigationUI
 import si.inova.zimskasola.services.BeaconBackgroundService
 
 class MainActivity : AppCompatActivity(), BeaconScanner.Listener {
@@ -143,6 +144,7 @@ class MainActivity : AppCompatActivity(), BeaconScanner.Listener {
         navController = host.navController
         setupBottomNavMenu(navController)
 
+        setupBackButtonAction()
 
         // Initialize Firebase Auth
         auth = FirebaseAuth.getInstance()
@@ -165,9 +167,6 @@ class MainActivity : AppCompatActivity(), BeaconScanner.Listener {
         }
 
     }
-
-
-
 
 
 
@@ -213,9 +212,23 @@ class MainActivity : AppCompatActivity(), BeaconScanner.Listener {
     private fun setupBottomNavMenu(navController: NavController) {
         bottomNav = findViewById<BottomNavigationView>(R.id.bottom_nav_view)
         bottomNav?.setupWithNavController(navController)
-
-
     }
+
+    private fun setupBackButtonAction() {
+        hideToolbarActionBack()
+        toolbar_btn_back.setOnClickListener {
+            navController.popBackStack()
+        }
+    }
+
+    fun showToolbarActionBack() {
+        toolbar_btn_back.visibility = View.VISIBLE
+    }
+
+    fun hideToolbarActionBack() {
+        toolbar_btn_back.visibility = View.INVISIBLE
+    }
+
 
     private fun startBeaconService() {
         // If the service is not running then start it

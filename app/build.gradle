@@ -68,6 +68,9 @@ dependencies {
     implementation 'android.arch.navigation:navigation-fragment-ktx:' + rootProject.navigationVersion
     implementation 'android.arch.navigation:navigation-ui-ktx:' + rootProject.navigationVersion
 
+    // Facebook shimmer
+    implementation 'com.facebook.shimmer:shimmer:0.1.0@aar'
+
     // Charts
     implementation 'com.github.blackfizz:eazegraph:1.2.2@aar'
     implementation 'com.nineoldandroids:library:2.4.0'

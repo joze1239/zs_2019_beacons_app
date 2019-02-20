@@ -1,21 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
-            xmlns:app="http://schemas.android.com/apk/res-auto"
+            xmlns:app="http://schemas.android.com/apk/res-auto" xmlns:tools="http://schemas.android.com/tools"
             android:id="@+id/nav_graph" app:startDestination="@id/my_location_dest">
     <fragment android:id="@+id/my_location_dest" android:name="si.inova.zimskasola.fragments.MyLocationFragment"
-              android:label="MyLocationFragment">
+              android:label="MyLocationFragment"
+              tools:layout="@layout/my_location_fragment"
+    >
         <action android:id="@+id/action_no_connection"
                 app:destination="@id/no_connection_dest"/>
     </fragment>
     <fragment android:id="@+id/location_list_dest" android:name="si.inova.zimskasola.fragments.AllLocationsFragment"
+              tools:layout="@layout/all_locations_fragment"
               android:label="AllLocationsFragment">
         <action android:id="@+id/action_no_connection"
                 app:destination="@id/no_connection_dest"/>
+        <action android:id="@+id/action_room_details"
+                app:destination="@id/room_details_dest"
+                app:enterAnim="@anim/slide_in_right"
+                app:exitAnim="@anim/slide_out_left"
+                app:popEnterAnim="@anim/slide_in_left"
+                app:popExitAnim="@anim/slide_out_right"/>
     </fragment>
     <fragment android:id="@+id/settings_dest" android:name="si.inova.zimskasola.fragments.SettingsFragment"
+              tools:layout="@layout/settings_fragment"
               android:label="SettingsFragment">
         <action android:id="@+id/action_no_connection" app:destination="@id/no_connection_dest"/>
     </fragment>
     <fragment android:id="@+id/no_connection_dest" android:name="si.inova.zimskasola.fragments.NoConnectionFragment"
+              tools:layout="@layout/fragment_no_connection"
               android:label="NoConnectionFragment"/>
+    <fragment android:id="@+id/room_details_dest" android:name="si.inova.zimskasola.fragments.RoomDetailsFragment"
+              tools:layout="@layout/fragment_room_details"
+              android:label="RoomDetailsFragment"/>
 </navigation>

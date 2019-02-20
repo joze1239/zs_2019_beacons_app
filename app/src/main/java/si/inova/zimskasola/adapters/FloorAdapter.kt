@@ -10,8 +10,9 @@ import com.example.zimskasola.R
 import kotlinx.android.synthetic.main.all_locations_fragment.*
 import kotlinx.android.synthetic.main.row_floor.view.*
 import si.inova.zimskasola.models.Floor
+import si.inova.zimskasola.viewmodels.MainViewModel
 
-class FloorAdapter(private val myDataset: List<Floor>, val context: Context) :
+class FloorAdapter(private val myDataset: List<Floor>, val context: Context, val viewModel: MainViewModel) :
     RecyclerView.Adapter<FloorAdapter.MyViewHolder>() {
 
     private lateinit var viewAdapter: RecyclerView.Adapter<*>
@@ -40,7 +41,7 @@ class FloorAdapter(private val myDataset: List<Floor>, val context: Context) :
         holder.root_layout.tv_floor_name.text = myDataset[position].name
 
         viewManager = LinearLayoutManager(context)
-        viewAdapter = RoomAdapter(myDataset[position].rooms, context)
+        viewAdapter = RoomAdapter(myDataset[position].rooms, context, viewModel, myDataset[position].name)
 
         holder.root_layout.rv_rooms.apply {
             layoutManager = viewManager

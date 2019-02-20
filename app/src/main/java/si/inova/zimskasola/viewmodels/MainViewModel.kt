@@ -32,8 +32,10 @@ class MainViewModel : ViewModel() {
 
     private lateinit var location: MutableLiveData<Location>
     private lateinit var currentRoom: MutableLiveData<Room>
+    lateinit var selectedRoom: Room
 
-    private val mStorageRef: StorageReference = FirebaseStorage.getInstance().reference
+
+    val mStorageRef: StorageReference = FirebaseStorage.getInstance().reference
 
 
     fun getUserEmail(): String? = auth.currentUser!!.email
@@ -68,7 +70,7 @@ class MainViewModel : ViewModel() {
             for (floor in floors) {
                 var room = floor.rooms.filter { it.beacon_id.equals(beaconId) }
                 Log.d(TAG, "updateCurrentRoom ${room.toString()}")
-                if (room.isNotEmpty())  {
+                if (room.isNotEmpty()) {
                     var newRoom = room[0]
                     newRoom.floor = floor.name
                     currentRoom.value = newRoom
@@ -85,6 +87,11 @@ class MainViewModel : ViewModel() {
     fun updateCurrentRoomLeaved() {
         currentRoom.value = null
     }
+
+    fun updateSelectedRoom(room: Room) {
+        selectedRoom = room
+    }
+
 
 
 }

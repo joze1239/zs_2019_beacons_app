@@ -57,6 +57,9 @@ class AllLocationsFragment : Fragment() {
 
     private fun initUI() {
         (activity as MainActivity).hideLogout()
+        (activity as MainActivity).hideToolbarActionBack()
+
+
     }
 
     private fun init() {
@@ -70,7 +73,7 @@ class AllLocationsFragment : Fragment() {
         viewModel.getLocationData().observe(this, Observer { location ->
             run {
                 viewManager = LinearLayoutManager(context)
-                viewAdapter = FloorAdapter(location.floors, context!!)
+                viewAdapter = FloorAdapter(location.floors, context!!, viewModel)
 
                 rv_floors.apply {
                     layoutManager = viewManager
