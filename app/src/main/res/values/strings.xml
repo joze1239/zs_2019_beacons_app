@@ -23,6 +23,8 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="beacons">Beacons</string>
+    <string name="number_of_visits">Število obiskovalcev</string>
 
 
 </resources>

@@ -1,13 +1,10 @@
-package si.inova.zimskasola.Services
+package si.inova.zimskasola.services
 
 import android.app.Service
 import android.content.Intent
 import android.os.IBinder
-import android.R.string.cancel
-import android.content.Context
 import android.os.Handler
 import android.util.Log
-import si.inova.zimskasola.fragments.MyLocationFragment
 import java.util.*
 
 

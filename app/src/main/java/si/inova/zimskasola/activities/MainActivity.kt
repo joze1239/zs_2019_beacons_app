@@ -24,8 +24,7 @@ import kotlinx.android.synthetic.main.activity_main.*
 import si.inova.zimskasola.util.BeaconScanner
 import si.inova.zimskasola.viewmodels.MainViewModel
 import android.net.Uri
-import si.inova.zimskasola.Services.BeaconBackgroundService
-import si.inova.zimskasola.util.InternetCheck
+import si.inova.zimskasola.services.BeaconBackgroundService
 
 class MainActivity : AppCompatActivity(), BeaconScanner.Listener {
 

@@ -40,7 +40,7 @@
         </activity>
 
         <service
-                android:name="si.inova.zimskasola.Services.BeaconBackgroundService"
+                android:name="si.inova.zimskasola.services.BeaconBackgroundService"
                 android:enabled="true"
                 android:exported="true">
         </service>

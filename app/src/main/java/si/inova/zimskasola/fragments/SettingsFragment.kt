@@ -13,6 +13,7 @@ import com.example.zimskasola.R
 import kotlinx.android.synthetic.main.settings_fragment.*
 import si.inova.zimskasola.activities.MainActivity
 import si.inova.zimskasola.adapters.FloorAdapter
+import si.inova.zimskasola.adapters.SettingsFloorAdapter
 import si.inova.zimskasola.util.InternetCheck
 import si.inova.zimskasola.viewmodels.MainViewModel
 
@@ -80,13 +81,16 @@ class SettingsFragment : Fragment() {
         // Show rooms list
         viewModel.getLocationData().observe(this, Observer { location ->
             run {
+
                 viewManager = LinearLayoutManager(context)
-                viewAdapter = FloorAdapter(location.floors, context!!)
+                viewAdapter = SettingsFloorAdapter(location.floors, context!!, viewModel.getCurrentRoom().value)
 
                 rv_floors.apply {
                     layoutManager = viewManager
                     adapter = viewAdapter
+                    isNestedScrollingEnabled = false
                 }
+
 
             }
 
