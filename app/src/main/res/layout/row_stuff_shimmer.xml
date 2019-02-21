@@ -8,46 +8,40 @@
     <View
             android:layout_width="fill_parent"
             android:layout_height="@dimen/hr_line"
-            android:background="@color/hr_line"/>
-    <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="13sp"
-            android:textColor="#000000"
-            android:text="Kava"
-            android:layout_marginTop="24dp" android:fontFamily="@font/montserrat_bold" android:id="@+id/tv_category"/>
+            android:background="@color/shimmer_background"/>
+    <View
+            android:layout_width="100dp"
+            android:layout_height="15dp"
+            android:background="@color/shimmer_background"
+            android:layout_marginTop="24dp" android:id="@+id/tv_category"/>
 
     <androidx.constraintlayout.widget.ConstraintLayout
             android:orientation="horizontal"
             android:layout_width="match_parent"
             android:layout_height="match_parent" android:layout_marginTop="4dp">
-        <TextView
-                android:layout_width="196dp"
+        <View
+                android:layout_width="200dp"
                 android:layout_height="26dp"
-                android:textSize="18sp"
-                android:textColor="#000000"
-                android:text="Aktiviraj svoje sive celice"
+                android:background="@color/shimmer_background"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent"
-                android:id="@+id/tv_name" android:fontFamily="@font/merriweather"/>
-        <ImageView
+                android:id="@+id/tv_name"/>
+        <View
                 android:layout_alignParentRight="true"
                 android:layout_alignParentEnd="true"
-
+                android:background="@color/shimmer_background"
                 android:layout_width="40dp"
-                android:layout_height="40dp" app:srcCompat="@mipmap/no_image" android:id="@+id/iv_icon"
-                android:adjustViewBounds="false" android:layout_marginEnd="16dp"
+                android:layout_height="40dp"  android:id="@+id/iv_icon"
+                android:layout_marginEnd="16dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent"/>
     </androidx.constraintlayout.widget.ConstraintLayout>
-    <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="13sp"
-            android:textColor="#000000"
-            android:text="Na voljo neomejeno 24/7"
-            android:layout_marginTop="4dp" android:fontFamily="@font/merriweather" android:id="@+id/tv_description"/>
+    <View
+            android:layout_width="200dp"
+            android:layout_height="15dp"
+            android:background="@color/shimmer_background"
+            android:layout_marginTop="4dp" android:id="@+id/tv_description"/>
 
 </LinearLayout>
