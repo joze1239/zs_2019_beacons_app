@@ -18,6 +18,9 @@
             android:theme="@style/AppTheme"
             tools:ignore="GoogleAppIndexingWarning">
 
+        <meta-data
+                android:name="io.fabric.ApiKey"
+                android:value="3e69f81d6c1e1dca77cad793bd60405ad3473863" />
 
         <activity android:name="si.inova.zimskasola.activities.SplashScreenActivity">
             <intent-filter>

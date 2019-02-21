@@ -30,8 +30,8 @@ class MainViewModel : ViewModel() {
     private var auth: FirebaseAuth = FirebaseAuth.getInstance()
 
 
-    private lateinit var location: MutableLiveData<Location>
-    private lateinit var currentRoom: MutableLiveData<Room>
+    lateinit var location: MutableLiveData<Location>
+    lateinit var currentRoom: MutableLiveData<Room>
     lateinit var selectedRoom: Room
 
 

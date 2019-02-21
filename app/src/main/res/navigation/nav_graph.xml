@@ -32,4 +32,10 @@
     <fragment android:id="@+id/room_details_dest" android:name="si.inova.zimskasola.fragments.RoomDetailsFragment"
               tools:layout="@layout/fragment_room_details"
               android:label="RoomDetailsFragment"/>
+    <fragment android:id="@+id/find_person_dest" android:name="si.inova.zimskasola.fragments.FindPersonFragment"
+              tools:layout="@layout/fragment_find_person"
+              android:label="FindPersonFragment">
+        <action android:id="@+id/action_no_connection"
+                app:destination="@id/no_connection_dest"/>
+    </fragment>
 </navigation>

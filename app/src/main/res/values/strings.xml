@@ -6,7 +6,7 @@
     <string name="login_btn">PRIJAVI SE</string>
     <string name="login_title">Prijava</string>
     <string name="login_subtitle">Za uporabo aplikacije se moraš prijaviti.</string>
-    <string name="my_location">Moja lokacija</string>
+    <string name="my_location">Lokacija</string>
     <string name="all_locations">Vsi prostori</string>
     <string name="navigate_destination_button">btn_dest1</string>
     <string name="navigate_action_button">btn_dest2</string>
@@ -16,6 +16,7 @@
     <string name="client_id">329347550650-j5fl321svlcfkhleu2sor4rkcbeu1k82.apps.googleusercontent.com</string>
     <string name="login_error_msg">Prijava ni uspela, poskusi ponovno.</string>
     <string name="rooms">Prostori</string>
+    <string name="select_person">Izberi osebo</string>
 
 
     <string name="permission_message">permission_message</string>
@@ -25,6 +26,10 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="beacons">Beacons</string>
     <string name="number_of_visits">Število obiskovalcev</string>
+    <string name="is_locating_at">SE NAHAJA V</string>
+    <string name="choose_person">Izberi osebo</string>
+    <string name="option_ok">OK</string>
+    <string name="option_cancel">Cancel</string>
 
 
 </resources>

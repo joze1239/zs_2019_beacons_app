@@ -42,7 +42,7 @@ class RoomDetailsFragment : Fragment() {
     private lateinit var viewAdapter: RecyclerView.Adapter<*>
     private lateinit var viewManager: RecyclerView.LayoutManager
 
-    private val SHIMMER_DURATION = 1000L
+    private val SHIMMER_DURATION = 800L
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -127,8 +127,8 @@ class RoomDetailsFragment : Fragment() {
 
     private fun stopShimmerEffect() {
         shimmer_view_container.stopShimmerAnimation()
-        shimmer_view_container.visibility = View.GONE
         l_details.visibility = View.VISIBLE
+        shimmer_view_container.visibility = View.GONE
     }
 
 

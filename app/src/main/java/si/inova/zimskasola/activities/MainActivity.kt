@@ -25,6 +25,8 @@ import si.inova.zimskasola.util.BeaconScanner
 import si.inova.zimskasola.viewmodels.MainViewModel
 import android.net.Uri
 import androidx.navigation.ui.NavigationUI
+import com.crashlytics.android.Crashlytics
+import io.fabric.sdk.android.Fabric
 import si.inova.zimskasola.services.BeaconBackgroundService
 
 class MainActivity : AppCompatActivity(), BeaconScanner.Listener {
@@ -49,6 +51,11 @@ class MainActivity : AppCompatActivity(), BeaconScanner.Listener {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        val fabric = Fabric.Builder(this)
+            .kits(Crashlytics())
+            .debuggable(true)
+            .build()
+        Fabric.with(fabric)
         setContentView(R.layout.activity_main)
 
         viewModel = ViewModelProviders.of(this).get(MainViewModel::class.java)
