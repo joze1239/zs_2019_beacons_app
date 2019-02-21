@@ -2,6 +2,7 @@ package si.inova.zimskasola.fragments
 
 import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -22,6 +23,7 @@ class AllLocationsFragment : Fragment() {
 
     companion object {
         fun newInstance() = AllLocationsFragment()
+        private const val TAG = "AllLocationsFragment"
     }
 
     private lateinit var viewModel: MainViewModel
@@ -66,7 +68,12 @@ class AllLocationsFragment : Fragment() {
         // Check internet connectiom
         InternetCheck { internet ->
             if (!internet) {
-                findNavController().navigate(R.id.action_no_connection)
+                try {
+                    findNavController().navigate(R.id.action_no_connection)
+                } catch (e: java.lang.Exception) {
+                    Log.d(TAG, e.toString())
+                }
+
             }
         }
 

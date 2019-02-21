@@ -30,6 +30,10 @@
     <string name="choose_person">Izberi osebo</string>
     <string name="option_ok">OK</string>
     <string name="option_cancel">Cancel</string>
+    <string name="channel_description">channel_description</string>
+    <string name="channel_name">si.inova.zimskasola</string>
+    <string name="new_room_notication">Zaznali smo nov prostor. Preveri njegove detajle.</string>
+    <string name="exit_room_notification">Zazanali smo izhod iz prostora.</string>
 
 
 </resources>

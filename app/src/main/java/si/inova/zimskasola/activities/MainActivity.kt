@@ -2,6 +2,8 @@ package si.inova.zimskasola.activities
 
 import android.Manifest
 import android.app.ActivityManager
+import android.app.NotificationChannel
+import android.app.NotificationManager
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
@@ -24,10 +26,14 @@ import kotlinx.android.synthetic.main.activity_main.*
 import si.inova.zimskasola.util.BeaconScanner
 import si.inova.zimskasola.viewmodels.MainViewModel
 import android.net.Uri
+import android.os.Build
+import androidx.core.app.NotificationCompat
+import androidx.core.app.NotificationManagerCompat
 import androidx.navigation.ui.NavigationUI
 import com.crashlytics.android.Crashlytics
 import io.fabric.sdk.android.Fabric
 import si.inova.zimskasola.services.BeaconBackgroundService
+import java.util.*
 
 class MainActivity : AppCompatActivity(), BeaconScanner.Listener {
 
@@ -46,6 +52,7 @@ class MainActivity : AppCompatActivity(), BeaconScanner.Listener {
 
     companion object {
         private const val TAG = "MainActivity"
+        private const val CHANNEL_ID = "1239"
     }
 
 
@@ -64,6 +71,9 @@ class MainActivity : AppCompatActivity(), BeaconScanner.Listener {
         init()
         initUI()
         checkPermissions()
+
+        createNotificationChannel()
+
     }
 
 
@@ -74,7 +84,6 @@ class MainActivity : AppCompatActivity(), BeaconScanner.Listener {
         intentService = Intent(applicationContext, serviceClass)
 
         startBeaconService()
-
 
 
     }
@@ -133,9 +142,16 @@ class MainActivity : AppCompatActivity(), BeaconScanner.Listener {
 
     override fun onBeaconFound(data: String) {
         viewModel.updateCurrentRoom(data)
+        var currentRoom = viewModel.currentRoom.value
+        if (currentRoom != null)
+            showNotification(currentRoom.name, getString(R.string.new_room_notication))
     }
 
     override fun onBeaconLost(data: String) {
+        var currentRoom = viewModel.currentRoom.value
+        if (currentRoom != null)
+            showNotification(currentRoom.name, getString(R.string.exit_room_notification))
+
         viewModel.updateCurrentRoomLeaved()
     }
 
@@ -174,7 +190,6 @@ class MainActivity : AppCompatActivity(), BeaconScanner.Listener {
         }
 
     }
-
 
 
     private fun openMaps() {
@@ -241,7 +256,7 @@ class MainActivity : AppCompatActivity(), BeaconScanner.Listener {
         // If the service is not running then start it
         if (!isServiceRunning(serviceClass)) {
             // Start the service
-            startService(intent)
+            startService(intentService)
             Log.d(TAG, "startBeaconService(): Service started")
         } else {
             Log.d(TAG, "startBeaconService(): Service already runing")
@@ -253,7 +268,7 @@ class MainActivity : AppCompatActivity(), BeaconScanner.Listener {
     private fun stopBeaconService() {
         if (isServiceRunning(serviceClass)) {
             // Stop the service
-            stopService(intent)
+            stopService(intentService)
         }
     }
 
@@ -270,6 +285,37 @@ class MainActivity : AppCompatActivity(), BeaconScanner.Listener {
             }
         }
         return false
+    }
+
+    private fun createNotificationChannel() {
+        // Create the NotificationChannel, but only on API 26+ because
+        // the NotificationChannel class is new and not in the support library
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            val name = getString(R.string.channel_name)
+            val descriptionText = getString(R.string.channel_description)
+            val importance = NotificationManager.IMPORTANCE_DEFAULT
+            val channel = NotificationChannel(CHANNEL_ID, name, importance).apply {
+                description = descriptionText
+            }
+            // Register the channel with the system
+            val notificationManager: NotificationManager =
+                getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+            notificationManager.createNotificationChannel(channel)
+        }
+    }
+
+    fun showNotification(title: String, content: String) {
+        var builder = NotificationCompat.Builder(this, CHANNEL_ID)
+            .setSmallIcon(R.mipmap.notification_icon)
+            .setContentTitle(title)
+            .setContentText(content)
+            .setPriority(NotificationCompat.PRIORITY_DEFAULT)
+
+        with(NotificationManagerCompat.from(this)) {
+            // notificationId is a unique int for each notification that you must define
+            var notification_id = Random().nextInt()
+            notify(notification_id, builder.build())
+        }
     }
 
 
