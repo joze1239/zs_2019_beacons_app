@@ -1,4 +1,4 @@
-# Winter school compentition 
+# Winter school compentition Android (Kotlin) App
 
 This app was made for competition on UM FERI (The Faculty of Electrical Engineering and Computer Science ) Winter school. 
 
