@@ -1,0 +1,51 @@
+{
+  "project_info": {
+    "project_number": "329347550650",
+    "firebase_url": "https://zs-beacons-2019.firebaseio.com",
+    "project_id": "zs-beacons-2019",
+    "storage_bucket": "zs-beacons-2019.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:329347550650:android:096fd5977cb8c387",
+        "android_client_info": {
+          "package_name": "si.inova.zimskasola"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "329347550650-60j2rmtkjqfu3rq2l8ci5jrq6khtupj4.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "si.inova.zimskasola",
+            "certificate_hash": "71c4ad1c430874de56407f43a9b18111d83f45c8"
+          }
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA1YSEpRR_9IKDgryobePQAgZdIicjMs-E"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "329347550650-j5fl321svlcfkhleu2sor4rkcbeu1k82.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

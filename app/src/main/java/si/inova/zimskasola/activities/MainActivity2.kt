@@ -1,17 +1,18 @@
-package si.inova.zimskasola
+package si.inova.zimskasola.activities
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.example.zimskasola.R
-import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.activity_main2.*
+import si.inova.zimskasola.util.BeaconScanner
 
-class MainActivity : AppCompatActivity(), BeaconScanner.Listener {
+class MainActivity2 : AppCompatActivity(), BeaconScanner.Listener {
 
     private var scanner = BeaconScanner(this, this)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        setContentView(R.layout.activity_main2)
     }
 
     override fun onStart() {

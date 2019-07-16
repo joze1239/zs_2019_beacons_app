@@ -1,8 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <color name="colorPrimary">#ff000000</color>
+    <color name="colorPrimaryDark">#ff000000</color>
+    <color name="colorAccent">#FF4081</color>
+
+    <!--    <color name="colorAccent">#FF4081</color> -->
+    <color name="text_color">#444</color>
+    <color name="window_background">#fff</color>
+
+
+    <color name="white">#fff</color>
+    <color name="black">#000</color>
+
+    <color name="colorAnimator">#fff</color>
+
+    <color name="mtrl_textinput_default_box_stroke_color" tools:override="true">#fff</color>
+
+
+    <color name="bottom_nav_text">#555</color>
+    <color name="bottom_nav_line">#555</color>
+    <color name="hr_line">#e5e5e5</color>
+    <color name="profile_pic_round">#ffffff</color>
+    <color name="IndicatorLineColor">#000</color>
+
+    <color name="chart_background">#E0E0E0</color>
+
+    <color name="shimmer_background">#dddddd</color>
+
+    <!--
     <color name="colorPrimary">#ffffffff</color>
     <color name="colorPrimaryDark">#ff000000</color>
     <color name="colorAccent">#D81B60</color>
     <color name="text_color">#ffffffff</color>
-    <color name="window_background">#ff000000</color>
+    <color name="window_background">#fff</color>
+    -->
 </resources>

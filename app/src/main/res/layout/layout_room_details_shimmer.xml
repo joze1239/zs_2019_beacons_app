@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent" android:layout_height="match_parent">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+                                                       android:layout_margin="16dp">
+
+
+        <View
+                android:layout_width="140dp"
+                android:layout_height="140dp"
+                android:background="@color/shimmer_background"
+                android:id="@+id/v_image" app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"/>
+        <View
+                android:layout_width="180dp"
+                android:layout_height="30dp"
+                android:background="@color/shimmer_background"
+                android:id="@+id/v_title"
+                app:layout_constraintStart_toStartOf="parent"
+                android:layout_marginStart="8dp"
+                app:layout_constraintBottom_toTopOf="@+id/v_subtitle" android:layout_marginBottom="4dp"/>
+        <View
+                android:layout_width="80dp"
+                android:layout_height="15dp"
+                android:background="@color/shimmer_background"
+                android:id="@+id/v_subtitle"
+                app:layout_constraintStart_toStartOf="parent"
+                android:layout_marginStart="8dp"
+                app:layout_constraintBottom_toBottomOf="@+id/v_image"/>
+        <include android:layout_width="0dp" android:layout_height="wrap_content"
+                 layout="@layout/row_stuff_shimmer"
+                 app:layout_constraintStart_toStartOf="parent"
+                 app:layout_constraintEnd_toEndOf="parent" android:id="@+id/include"
+                 app:layout_constraintTop_toBottomOf="@+id/v_image" android:layout_marginTop="16dp"/>
+        <include android:layout_width="0dp" android:layout_height="wrap_content"
+                 layout="@layout/row_stuff_shimmer" app:layout_constraintTop_toBottomOf="@+id/include"
+                 android:layout_marginTop="16dp" app:layout_constraintEnd_toEndOf="parent"
+                 app:layout_constraintStart_toStartOf="parent" app:layout_constraintBottom_toBottomOf="parent"/>
+</androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</ScrollView>

@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:app="http://schemas.android.com/apk/res-auto" xmlns:tools="http://schemas.android.com/tools" android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" android:layout_marginTop="0dp">
+        <TextView
+                android:text="TextView"
+                android:layout_width="wrap_content"
+                android:textSize="18sp"
+                android:textColor="#000000"
+                android:layout_height="wrap_content" android:id="@+id/tv_room_name"
+                android:fontFamily="@font/montserrat_bold"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintStart_toStartOf="parent"
+        />
+        <ImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp" app:srcCompat="@mipmap/location_inactive"
+                android:id="@+id/iv_activity" app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"/>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="13sp"
+            android:textColor="#000000"
+            android:text="@string/number_of_visits"
+            android:fontFamily="@font/montserrat_bold" android:layout_marginTop="16dp"/>
+
+
+    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="13sp"
+            android:textColor="#000000"
+            android:text="pon 18. 2. - pet 22. 2. 2019"
+            android:fontFamily="@font/montserrat" android:id="@+id/tv_text_visits"/>
+
+    <org.eazegraph.lib.charts.ValueLineChart
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/chart_activity"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            app:egUseCubic="true"
+            app:egUseOverlapFill="true"
+            app:egCurveSmoothness="0.4"
+            app:egIndicatorLineColor="@color/IndicatorLineColor"
+            app:egIndicatorTextColor="@color/IndicatorLineColor"
+            app:egLegendHeight="40dp"
+            app:egShowStandardValue="true" app:egLineStroke="10dp" android:layout_marginTop="12dp"
+            android:layout_marginBottom="32dp"/>
+
+
+
+</LinearLayout>
